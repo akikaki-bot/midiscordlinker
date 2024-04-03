@@ -1,5 +1,5 @@
-import { ApplicationRoleConnectionMetadataType } from "discord-api-types/v10"
-import { DISCORD_BOT_TOKEN, DISCORD_CLIENT_ID } from "../dist/secrets/tokens";
+const { ApplicationRoleConnectionMetadataType } = require("discord-api-types/v10")
+const { DISCORD_BOT_TOKEN, DISCORD_CLIENT_ID } = require("../production/secrets/tokens");
 
 ( async () => {
     const url = `https://discord.com/api/v10/applications/${DISCORD_CLIENT_ID}/role-connections/metadata`;
@@ -17,7 +17,7 @@ import { DISCORD_BOT_TOKEN, DISCORD_CLIENT_ID } from "../dist/secrets/tokens";
         method : "PUT",
         headers : {
             "Content-Type" : "application/json",
-            Authroization : `Bot ${DISCORD_BOT_TOKEN}`
+            Authorization : `Bot ${DISCORD_BOT_TOKEN}`
         },
         body : JSON.stringify(body)
     })
