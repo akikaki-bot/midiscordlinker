@@ -7,7 +7,7 @@ function MiAuthGenerator() {
     var uuid = (0, crypto_1.randomUUID)();
     return {
         uuid: uuid,
-        url: "https://" + tokens_1.MISSKEY_HOST_URL + "/miauth/" + uuid + "?name=MisskeyRoleConnection&callback=" + tokens_1.MISSKEY_REDIRECT_URI + "&permission=read:account"
+        url: tokens_1.MISSKEY_HOST_URL + "/miauth/" + uuid + "?name=MisskeyRoleConnection&callback=" + tokens_1.MISSKEY_REDIRECT_URI + "&permission=read:account"
     };
 }
 exports.MiAuthGenerator = MiAuthGenerator;
