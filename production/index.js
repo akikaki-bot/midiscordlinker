@@ -127,7 +127,7 @@ app.get('/micallback', function (req, res) { return __awaiter(void 0, void 0, vo
                 return [4 /*yield*/, (0, updateMetadata_1.updateMetadata)(clientState.userId)];
             case 3:
                 _a.sent();
-                res.status(200).send("Successfully linked your account. DiscordId : " + clientState.userId + " MisskeyId : " + data.user["id"]);
+                res.status(200).send("Successfully linked your account. DiscordId : " + clientState.userId);
                 return [3 /*break*/, 5];
             case 4:
                 e_2 = _a.sent();
