@@ -36,7 +36,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-var Misskey = require("misskey-js");
 var express = require("express");
 var tokens_1 = require("./secrets/tokens");
 var discord_url_1 = require("./generators/discord.url");
@@ -46,12 +45,9 @@ var getMe_1 = require("./oauth/getMe");
 var stores_1 = require("./cache/stores");
 var updateMetadata_1 = require("./oauth/updateMetadata");
 var miauth_url_1 = require("./generators/miauth.url");
-var cli = new Misskey.api.APIClient({
-    origin: tokens_1.MISSKEY_HOST_URL,
-    credential: tokens_1.MISSKEY_ACCESS_TOKEN
-});
 var app = express();
 app.use(coockieParser(tokens_1.COOKIE_SECRET));
+app.listen(tokens_1.PORT, function () { console.log("Server is running on port " + tokens_1.PORT); });
 app.get("/", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         res.send("Hello World");
@@ -116,10 +112,11 @@ app.get('/micallback', function (req, res) { return __awaiter(void 0, void 0, vo
                 clientState = JSON.parse(_clientState);
                 if (clientState.session !== session)
                     return [2 /*return*/, res.status(403).send("invaild state")];
-                return [4 /*yield*/, cli.fetch("miauth/" + session + "/check", {
+                return [4 /*yield*/, fetch(tokens_1.MISSKEY_HOST_URL + "/api/miauth/" + session + "/check", {
                         method: "POST",
                         headers: {
-                            "Content-Type": "application/json"
+                            "Content-Type": "application/json",
+                            Authorization: "Bearer " + tokens_1.MISSKEY_ACCESS_TOKEN
                         }
                     })];
             case 1:
